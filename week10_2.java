@@ -1,32 +1,18 @@
-import java.util.*;
-
-public class week10_2 {
+import java.util.Iterator;
+import java.util.LinkedList;
+public class Task_tenb {
     public static void main(String[] args) {
-        List<Integer> arrayList = new ArrayList<>();
-        for (int i = 0; i < 5000000; i++) {
-            arrayList.add(i);
-        }
-        LinkedList<Integer> linkedList = new LinkedList<>(arrayList);
-
-       
-        long iteratorTimerStart = System.currentTimeMillis();
-        ListIterator<Integer> listIterator = linkedList.listIterator();
-        while (listIterator.hasNext()) {
-            listIterator.next();
-        }
-        long iteratorTimerEnd = System.currentTimeMillis();
-
-    
-        System.out.println("Time to traverse the list using an iterator :"
-                + (iteratorTimerEnd - iteratorTimerStart) + " millis");
-
-        long getTimerStart = System.currentTimeMillis();
-        for (int i = 0; i < 5000000; i++) {
-            linkedList.get(i);
-        }
-        long getTimerEnd = System.currentTimeMillis();
-
-        System.out.println("Time to traverse the list using the get(index) method :"
-                + (getTimerEnd - getTimerStart) + " millis");
+        long start, end;
+        LinkedList<Integer> linkedList = new LinkedList<>();
+        for(int i = 0; i < 5000000; i++) linkedList.add(i);
+        Iterator<Integer> iterator = linkedList.iterator();
+        start = System.currentTimeMillis();
+        while (iterator.hasNext()) iterator.next();
+        end = System.currentTimeMillis();
+        System.out.println("Iterator: " + (end - start));
+        start = System.currentTimeMillis();
+        for(int i = 0; i < linkedList.size(); i++) linkedList.get(i);
+        end = System.currentTimeMillis();
+        System.out.println("Get method: " + (end - start));
     }
 }
